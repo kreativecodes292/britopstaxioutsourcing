@@ -93,7 +93,7 @@ export default function FooterTop() {
       {/* Bottom Bar */}
       <div className="mt-12 border-t border-gray-200 pt-6 flex flex-col md:flex-row justify-between items-center text-sm text-[#344e41]/70">
 
-        <p>© {new Date().getFullYear()} CabCall. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} BritOps Taxi Outsourcing. All rights reserved.</p>
 
         <p className="mt-3 md:mt-0">
           Developed by 

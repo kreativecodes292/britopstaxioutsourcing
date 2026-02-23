@@ -44,7 +44,7 @@ export default function FooterTop() {
 
             <div className="flex items-center gap-3">
               <FaEnvelope className="text-[#FFD60A]" />
-              <span>support@cabcall.com</span>
+              <span>britopstaxioutsourcing.com</span>
             </div>
 
             <div className="flex items-center gap-3">

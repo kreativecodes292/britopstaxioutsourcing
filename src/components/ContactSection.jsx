@@ -73,15 +73,14 @@ export default function ContactSection() {
           </p>
 
           <h1 className="mt-3 text-2xl sm:text-4xl md:text-5xl font-extrabold leading-snug text-[#eae2b0]">
-            Professional UK <br />
+            UK Taxi Dispatch & Call Handling <br />
             <span className="text-[#ddffdd]">
-              BritOps Taxi Outsourcing Services
+              Outsourcing Experts
             </span>
           </h1>
 
           <p className="mt-5 text-[#dad7cd] text-sm sm:text-base leading-relaxed max-w-md mx-auto lg:mx-0">
-            Streamline your taxi dispatch operations with our UK cab call outsourcing solutions.
-            Our expert team manages booking calls 24/7 ensuring accuracy and cost-efficiency.
+Streamline your taxi operations with our professional 24/7 dispatch and call handling outsourcing services. Backed by over 30 years of hands-on UK taxi industry experience, BritOps helps taxi operators reduce costs, improve response times, and scale efficiently.
           </p>
 
           <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#b1dcb9] via-[#a9f0a8] to-[#7aa281] mt-6 rounded-full mx-auto lg:mx-0"></div>

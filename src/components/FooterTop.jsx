@@ -10,7 +10,7 @@ export default function FooterTop() {
         {/* BRAND */}
         <div>
           <h2 className="text-3xl font-extrabold mb-4 text-[#588157]">
-            CabCall
+            BritOps Taxi Outsourcing
           </h2>
           <p className="text-[#344e41]/90 leading-relaxed">
             Reliable & professional UK taxi outsourcing solutions.

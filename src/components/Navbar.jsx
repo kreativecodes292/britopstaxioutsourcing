@@ -8,6 +8,9 @@ import boto from "../assets/new.png";
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
+  // Function to close mobile menu when a link is clicked
+  const handleLinkClick = () => setMenuOpen(false);
+
   return (
     <nav className="fixed top-0 left-0 w-full z-50 flex justify-center px-4 py-2">
 
@@ -22,8 +25,7 @@ export default function Navbar() {
       >
 
         {/* Logo */}
-        {/* Logo */}
-        <Link to="/" className="flex items-center justify-center h-full">
+        <Link to="/" className="flex items-center justify-center h-full" onClick={handleLinkClick}>
           <img
             src={boto}
             alt="BritOps Taxi Outsourcing"
@@ -87,20 +89,20 @@ export default function Navbar() {
             bg-gradient-to-r from-[#3a5a40] via-[#588157] to-[#a3b18a] 
             rounded-[30px] shadow-xl p-6 flex flex-col gap-6 text-lg font-medium md:hidden"
           >
-            <Link to="/" className="hover:text-[#FFD60A] transition">
+            <Link to="/" className="hover:text-[#FFD60A] transition" onClick={handleLinkClick}>
               Home
             </Link>
-            <Link to="/about" className="hover:text-[#FFD60A] transition">
+            <Link to="/about" className="hover:text-[#FFD60A] transition" onClick={handleLinkClick}>
               About
             </Link>
-            <Link to="/services" className="hover:text-[#FFD60A] transition">
+            <Link to="/services" className="hover:text-[#FFD60A] transition" onClick={handleLinkClick}>
               Services
             </Link>
-            <Link to="/contact" className="hover:text-[#FFD60A] transition">
+            <Link to="/contact" className="hover:text-[#FFD60A] transition" onClick={handleLinkClick}>
               Contact
             </Link>
 
-            <Link to="/contact">
+            <Link to="/contact" onClick={handleLinkClick}>
               <button className="w-full bg-yellow-200 py-2 rounded-full text-lg font-semibold flex justify-center items-center gap-2 shadow-lg hover:scale-105 transition text-black">
                 Get Consultation
                 <FiArrowUpRight />

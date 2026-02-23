@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 export default function Hero() {
   return (
-    <section className="relative isolate w-full min-h-screen pt-10 flex items-center overflow-hidden">
+    <section className="relative isolate w-full min-h-screen pt-6 sm:pt-10 flex items-center overflow-hidden">
 
       {/* Background Video */}
       <video

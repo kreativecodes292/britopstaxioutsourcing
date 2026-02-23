@@ -76,7 +76,7 @@ export default function Contact() {
               <FaEnvelope />
             </div>
             <h3 className="font-bold text-xl mb-2 text-[#588157]">Email</h3>
-            <p>contact@homecare.co.uk</p>
+            <p>britopstaxioutsourcing.com</p>
           </div>
 
           <div className="bg-[#f5f5f5] rounded-xl shadow-lg p-6 flex flex-col items-center">

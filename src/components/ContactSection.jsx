@@ -140,14 +140,14 @@ export default function ContactSection() {
             <div>
               <h3 className="text-xl font-bold text-[#eae2b0]">
                 <FaPhoneAlt className="inline mr-2 text-[#91cf90]" />
-                +44 (7456) 285429
+                +44 7521 440329
               </h3>
             </div>
 
             <div>
               <h3 className="text-xl font-bold text-[#eae2b0]">
                 <FaEnvelope className="inline mr-2 text-[#91cf90]" />
-                contact@cabrides.com
+                britopstaxioutsourcing.com
               </h3>
             </div>
           </div>

@@ -1,84 +1,117 @@
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
+import { FaUsers, FaHeadset, FaClock, FaMoneyBillWave } from "react-icons/fa";
+
 export default function WhyChoose() {
+  const ref = useRef(null);
+
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start center", "end center"]
+  });
+
+  const height = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
+
   return (
-    <section className="w-full py-14 bg-white">
-      <div className="max-w-6xl mx-auto px-4 text-center">
+    <section
+      ref={ref}
+      className="w-full py-15 px-5 sm:px-8 lg:px-12 py-10 bg-white overflow-hidden"
+    >
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-start">
 
-        {/* Heading */}
-        <h2 className="text-2xl md:text-3xl font-bold text-[#0B4F6C] mb-12">
-          Why Choose Assist Home Care?
-        </h2>
+        {/* LEFT SIDE */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          <span className="text-sm text-[#588157] uppercase tracking-widest font-semibold">
+            Why Brit Ops
+          </span>
 
-        {/* 3 Items */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: 60 }}
+            transition={{ duration: 0.6 }}
+            className="h-[3px] mt-3 rounded-full bg-gradient-to-r from-[#FFD60A] to-[#588157]"
+          />
 
-          {/* CARD 1 */}
-          <div className="flex flex-col items-center text-center">
-            {/* EXACT Shield Icon */}
-            <div className="mb-4">
-              <svg width="64" height="64" viewBox="0 0 64 64">
-                <path
-                  d="M32 2L6 14V30C6 46 18 58 32 62C46 58 58 46 58 30V14L32 2Z"
-                  fill="#0B4F6C"
-                />
-                <path
-                  d="M32 22L25 34H30V44H34V34H39L32 22Z"
-                  fill="white"
-                />
-              </svg>
-            </div>
+          <h2 className="mt-6 text-4xl lg:text-5xl font-bold leading-tight text-[#283618]">
+            30+ Years UK Taxi Experience
+          </h2>
+          <h2 className="text-4xl lg:text-5xl font-bold text-[#588157]">
+            Trusted Dispatch Outsourcing
+          </h2>
 
-            <h3 className="text-lg font-semibold text-[#0B4F6C]">
-              CQC Rated "Good"
-            </h3>
+          <p className="mt-6 text-[#344e41] text-lg max-w-md leading-relaxed">
+            Our team brings decades of driving and dispatch experience from the UK,
+            ensuring professional handling of every booking and customer interaction.
+          </p>
 
-            <p className="text-gray-600 text-sm mt-2">
-              High standards of care.
-            </p>
-          </div>
+          <p className="mt-4 text-[#344e41] text-lg max-w-md leading-relaxed">
+            Operated from Pakistan, we offer cost-effective, 24/7 dispatch services
+            that meet UK standards without compromising quality.
+          </p>
+        </motion.div>
 
-          {/* CARD 2 */}
-          <div className="flex flex-col items-center text-center">
-            {/* EXACT Team Icon */}
-            <div className="mb-4">
-              <svg width="75" height="75" viewBox="0 0 64 64">
-                <circle cx="20" cy="22" r="10" fill="#1CA89B" />
-                <circle cx="44" cy="22" r="10" fill="#1CA89B" />
-                <circle cx="32" cy="36" r="14" fill="#1CA89B" />
-              </svg>
-            </div>
+        {/* RIGHT SIDE TIMELINE */}
+        <div className="relative pl-10">
+          {/* Base Line */}
+          <div className="absolute left-4 top-0 w-[2px] h-full bg-[#588157]/20"></div>
 
-            <h3 className="text-lg font-semibold text-[#0B4F6C]">
-              Experienced Team
-            </h3>
+          {/* Animated Line */}
+          <motion.div
+            style={{ height }}
+            className="absolute left-4 top-0 w-[2px] bg-gradient-to-b from-[#FFD60A] to-[#588157]"
+          />
 
-            <p className="text-gray-600 text-sm mt-2">
-              Qualified & compassionate carers.
-            </p>
-          </div>
+          <TimelineStep
+            icon={<FaUsers />}
+            title="30+ Years UK Taxi Experience"
+            text="Decades of real-world driving and dispatch experience, ensuring reliable operations."
+          />
 
-          {/* CARD 3 */}
-          <div className="flex flex-col items-center text-center">
-            {/* EXACT Heart Icon */}
-            <div className="mb-4">
-              <svg width="70" height="70" viewBox="0 0 64 64">
-                <path
-                  d="M32 58L12 40C3 30 9 16 21 16C27 16 31 20 32 22C33 20 37 16 43 16C55 16 61 30 52 40L32 58Z"
-                  fill="#20B2AA"
-                />
-              </svg>
-            </div>
+          <TimelineStep
+            icon={<FaHeadset />}
+            title="Dedicated Dispatch Teams"
+            text="Fully trained UK-focused dispatch agents managing calls and bookings seamlessly."
+          />
 
-            <h3 className="text-lg font-semibold text-[#0B4F6C]">
-              Local & Trusted
-            </h3>
+          <TimelineStep
+            icon={<FaClock />}
+            title="24/7 UK Coverage"
+            text="Round-the-clock service aligned with UK time zones for prompt customer handling."
+          />
 
-            <p className="text-gray-600 text-sm mt-2">
-              Serving Bradford & West Yorkshire.
-            </p>
-          </div>
-
+          <TimelineStep
+            icon={<FaMoneyBillWave />}
+            title="Cost-Effective Operations from Pakistan"
+            text="Premium UK-standard dispatch services at highly competitive, efficient prices."
+          />
         </div>
       </div>
     </section>
+  );
+}
+
+function TimelineStep({ icon, title, text }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 60 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      transition={{ duration: 0.5 }}
+      className="relative flex items-start gap-6 mb-16"
+    >
+      <div className="w-12 h-12 flex items-center justify-center rounded-full 
+                      bg-gradient-to-br from-[#588157] to-[#344e41] 
+                      text-white text-lg shadow-md border border-[#FFD60A]/40 z-10">
+        {icon}
+      </div>
+
+      <div>
+        <h3 className="text-xl font-semibold text-[#283618]">{title}</h3>
+        <p className="text-[#344e41] mt-2 max-w-md">{text}</p>
+      </div>
+    </motion.div>
   );
 }

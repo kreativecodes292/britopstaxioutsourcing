@@ -1,159 +1,114 @@
+import { motion } from "framer-motion";
 import { FaPhoneAlt, FaEnvelope } from "react-icons/fa";
-import { MdOutlineMessage } from "react-icons/md";
-import { useRef, useState } from "react";
-import emailjs from "@emailjs/browser";
 
 export default function ContactSection() {
-  const formRef = useRef();
-
-  const [loading, setLoading] = useState(false);
-  const [success, setSuccess] = useState(false);
-  const [error, setError] = useState(false);
-
- const sendEmail = (e) => {
-  e.preventDefault();
-  setLoading(true);
-  setSuccess(false);
-  setError(false);
-
-  emailjs.sendForm(
-    "service_hgcjup7",          // ✅ Service ID (direct)
-    "template_vx4ygqo",         // ✅ Template ID (direct)
-    formRef.current,
-    "FRgU3OsHAc7gfXGxU"         // ✅ Public Key (direct)
-  ).then(
-    () => {
-      setSuccess(true);
-      setLoading(false);
-      formRef.current.reset();
-    },
-    (err) => {
-      console.error("EmailJS Error:", err);
-      setError(true);
-      setLoading(false);
-    }
-  );
-};
-
-
   return (
-    <section id="contact" className="w-full py-16 bg-gradient-to-r from-[#20B2AA] via-[#0e5f80] to-[#0B4F6C] text-white relative overflow-hidden">
+    <section
+      id="contact"
+      className="relative isolate w-full pt-24 sm:pt-32 lg:pt-36 pb-24 sm:pb-32 px-5 sm:px-8 lg:px-24 overflow-hidden"
+    >
       
-      {/* Decorative Shapes */}
-      <div className="absolute -top-10 -left-10 w-32 h-32 bg-[#FFD166] rounded-full opacity-30 animate-pulse"></div>
-      <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#06D6A0] rounded-full opacity-30 animate-pulse"></div>
+      {/* Glow Background */}
+      <motion.div
+        initial={{ scale: 0 }}
+        animate={{ scale: 1.2 }}
+        transition={{ duration: 2, repeat: Infinity, repeatType: "mirror" }}
+        className="absolute top-[-150px] left-1/2 -translate-x-1/2 w-[350px] sm:w-[550px] h-[350px] sm:h-[550px] 
+        bg-gradient-to-br from-[#3a5a40]/30 via-[#588157]/20 to-[#7aa281]/10 blur-3xl rounded-full pointer-events-none z-0"
+      />
 
-      <div className="max-w-7xl mx-auto px-4">
-        <h2 className="text-4xl md:text-5xl font-bold text-center mb-6">
-          Get in <span className="text-[#FFD166]">Touch</span>
-        </h2>
-        <p className="text-center text-gray-200 mb-12 text-lg">
-          We’d love to hear from you! Reach out for inquiries or a free consultation.
-        </p>
+      <div className="relative z-10 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-24 items-center">
 
-        {/* Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <div className="bg-white text-[#0B4F6C] rounded-xl shadow-lg p-6 flex flex-col items-center">
-            <div className="bg-[#FFD166] p-4 rounded-full mb-4 text-2xl">
-              <FaPhoneAlt />
-            </div>
-            <h3 className="font-bold text-xl mb-2">Call Us</h3>
-            <p>+44 1234 567890</p>
-          </div>
+        {/* ================= LEFT FORM ================= */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="space-y-5 bg-[#3a5a40]/20 backdrop-blur-3xl border border-[#588157]/30 
+          p-6 sm:p-8 md:p-10 rounded-3xl shadow-2xl relative overflow-hidden"
+        >
 
-          <div className="bg-white text-[#0B4F6C] rounded-xl shadow-lg p-6 flex flex-col items-center">
-            <div className="bg-[#06D6A0] p-4 rounded-full mb-4 text-2xl">
-              <FaEnvelope />
-            </div>
-            <h3 className="font-bold text-xl mb-2">Email</h3>
-            <p>contact@homecare.co.uk</p>
-          </div>
+          <h2 className="text-2xl sm:text-3xl font-bold text-[#fefae0] mb-2 text-center lg:text-left">
+            Book Your Outsourced Ride
+          </h2>
 
-          <div className="bg-white text-[#0B4F6C] rounded-xl shadow-lg p-6 flex flex-col items-center">
-            <div className="bg-[#FFD166] p-4 rounded-full mb-4 text-2xl">
-              <MdOutlineMessage />
-            </div>
-            <h3 className="font-bold text-xl mb-2">Live Chat</h3>
-            <p>Start a chat with our support team.</p>
-          </div>
-        </div>
+          <input
+            type="text"
+            placeholder="Name"
+            className="w-full px-5 py-3 rounded-full border border-[#588157] bg-[#3a5a40]/20 text-[#fefae0] placeholder-[#dad7cd] focus:ring-2 focus:ring-[#588157]"
+          />
 
-        {/* FORM (Updated fields + EmailJS) */}
-        <div className="mt-16 bg-white rounded-2xl shadow-2xl p-8 md:p-12 text-[#0B4F6C]">
-          <h3 className="text-2xl font-bold mb-6 text-center">
-            Send Us a Message
-          </h3>
+          <input
+            type="email"
+            placeholder="Email"
+            className="w-full px-5 py-3 rounded-full border border-[#588157] bg-[#3a5a40]/20 text-[#fefae0] placeholder-[#dad7cd] focus:ring-2 focus:ring-[#588157]"
+          />
 
-          <form
-            ref={formRef}
-            onSubmit={sendEmail}
-            className="grid grid-cols-1 md:grid-cols-2 gap-6"
-          >
-            <input
-              name="name"
-              required
-              placeholder="Your Name"
-              className="border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#20B2AA]"
-            />
+          <textarea
+            placeholder="Your Message / Requirements"
+            rows={4}
+            className="w-full px-5 py-3 rounded-2xl border border-[#588157] bg-[#3a5a40]/20 text-[#fefae0] placeholder-[#dad7cd] focus:ring-2 focus:ring-[#588157]"
+          ></textarea>
 
-            <input
-              name="email"
-              type="email"
-              required
-              placeholder="Your Email"
-              className="border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#20B2AA]"
-            />
+          <input
+            type="text"
+            placeholder="Phone Number"
+            className="w-full px-5 py-3 rounded-full border border-[#588157] bg-[#3a5a40]/20 text-[#fefae0] placeholder-[#dad7cd] focus:ring-2 focus:ring-[#588157]"
+          />
 
-            <input
-              name="phone"
-              required
-              placeholder="Phone Number"
-              className="border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#20B2AA]"
-            />
+          <button className="w-full py-3 bg-gradient-to-r from-[#3a5a40] via-[#588157] to-[#7aa281] text-[#fefae0] rounded-full font-semibold shadow-lg hover:scale-105 transition">
+            Submit Request
+          </button>
+        </motion.div>
 
-            <select
-              name="service"
-              required
-              className="border rounded-lg px-4 py-3 focus:ring-2 focus:ring-[#20B2AA]"
-            >
-              <option value="">Select Service</option>
-              <option>Home Care</option>
-              <option>Supported Living</option>
-              <option>Live In Care</option>
-            </select>
+        {/* ================= RIGHT CONTENT ================= */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+          className="text-center lg:text-left flex flex-col justify-center"
+        >
+          <p className="uppercase tracking-widest text-xs sm:text-sm text-[#ecffeb] font-semibold">
+            Outsource Your Cab Calls
+          </p>
 
-            <textarea
-              name="message"
-              rows="5"
-              placeholder="Tell us about your issue..."
-              className="border rounded-lg px-4 py-3 md:col-span-2 focus:ring-2 focus:ring-[#20B2AA]"
-            />
+          <h1 className="mt-3 text-2xl sm:text-4xl md:text-5xl font-extrabold leading-snug text-[#eae2b0]">
+            Professional UK <br />
+            <span className="text-[#ddffdd]">
+              Cab Call Outsourcing Services
+            </span>
+          </h1>
 
-            <input
-              type="hidden"
-              name="time"
-              value={new Date().toLocaleString()}
-            />
+          <p className="mt-5 text-[#dad7cd] text-sm sm:text-base leading-relaxed max-w-md mx-auto lg:mx-0">
+            Streamline your taxi dispatch operations with our UK cab call outsourcing solutions.
+            Our expert team manages booking calls 24/7 ensuring accuracy and cost-efficiency.
+          </p>
 
-            <button
-              type="submit"
-              className="md:col-span-2 bg-[#0B4F6C] hover:bg-[#20B2AA] text-white font-semibold px-6 py-3 rounded-lg transition"
-            >
-              {loading ? "Sending..." : "Send Message"}
-            </button>
+          <div className="w-16 sm:w-20 h-1 bg-gradient-to-r from-[#b1dcb9] via-[#a9f0a8] to-[#7aa281] mt-6 rounded-full mx-auto lg:mx-0"></div>
 
-            {success && (
-              <p className="md:col-span-2 text-center text-green-600">
-                ✅ Message sent successfully
+          <div className="mt-8 sm:mt-10 space-y-6">
+            <div>
+              <p className="text-xs uppercase tracking-wider text-[#f2ffdd]">
+                Call Us
               </p>
-            )}
-            {error && (
-              <p className="md:col-span-2 text-center text-red-600">
-                ❌ Something went wrong
+              <h3 className="text-lg sm:text-2xl font-bold mt-1 text-[#eae2b0]">
+                <FaPhoneAlt className="inline mr-2 text-[#91cf90]" />
+                +44 (7456) 285429
+              </h3>
+            </div>
+
+            <div>
+              <p className="text-xs uppercase tracking-wider text-[#f2ffdb]">
+                Email
               </p>
-            )}
-          </form>
-        </div>
+              <h3 className="text-lg sm:text-2xl font-bold mt-1 text-[#eae2b0]">
+                <FaEnvelope className="inline mr-2 text-[#91cf90]" />
+                contact@cabrides.com
+              </h3>
+            </div>
+          </div>
+        </motion.div>
+
       </div>
     </section>
   );

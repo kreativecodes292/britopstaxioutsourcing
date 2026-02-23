@@ -1,10 +1,10 @@
 
 import Hero from '../components/Hero'
 import WhyChoose from '../components/WhyChoose'
-import AreasWeCover from '../components/AreasWeCover'
 import GetInTouch from '../components/GetInTouch'
 import ContactSection from '../components/ContactSection'
 import { useEffect } from 'react'
+import FAQSection from '../components/faqs'
 
 const Home = () => {
         // 👇 ADD THIS
@@ -15,11 +15,12 @@ const Home = () => {
         });
       }, []);
     return (
-        <div>
+    <div className="min-h-screen w-full bg-gradient-to-b from-[#3a5a40] via-[#588157] to-[#a3b18a]">
+      
             <Hero/>
             <WhyChoose/>
-            <AreasWeCover/>
             <ContactSection/>
+            <FAQSection/>
             <GetInTouch/>
         </div>
     )

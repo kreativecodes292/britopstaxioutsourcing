@@ -1,143 +1,160 @@
-import React, { useEffect } from "react";
-import { FaHome, FaBed } from "react-icons/fa";
-import { MdOutlineSupport } from "react-icons/md";
-import ss1 from "../assets/ss1.png";
-import ss2 from "../assets/ss2.png";
-import ss3 from "../assets/ss3.png";
-import ss4 from "../assets/ss4.png";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useEffect, useRef } from "react";
+import { FaUsers, FaHeadset, FaClock, FaMoneyBillWave } from "react-icons/fa";
+
+// Team images (replace with your own images)
+import Team1 from "../assets/team1.jpg";
+import Team2 from "../assets/team2.jpg";
+import Team3 from "../assets/team3.jpg";
 
 
-export default function Services() {
+const services = [
+  {
+    title: "UK Taxi Dispatch Outsourcing",
+    description:
+      "Our professional dispatch teams based in Pakistan provide 24/7 UK-standard taxi dispatch services. We handle bookings, manage drivers, and ensure timely pick-ups and drop-offs. Our team ensures seamless operations for UK taxi companies, optimizing efficiency and customer satisfaction.",
+    icon: <FaUsers />,
+    iconBg: "#FFD60A",
+    teamImg: Team1,
+  },
+  {
+    title: "Airport Transfer Management",
+    description:
+      "We manage airport pick-ups and drop-offs efficiently. Our dispatch team monitors flight schedules to guarantee punctual service and customer satisfaction. Ideal for UK taxi services aiming for hassle-free airport transfers.",
+    icon: <FaHeadset />,
+    iconBg: "#588157",
+    teamImg: Team2,
+  },
+  {
+    title: "Fleet & Driver Coordination",
+    description:
+      "Optimize your fleet operations with our trained professionals. From ride allocation to driver communication, we streamline UK taxi operations cost-effectively while maintaining UK service standards.",
+    icon: <FaClock />,
+    iconBg: "#FFD60A",
+    teamImg: Team3,
+  },
+  {
+    title: "24/7 Customer Support",
+    description:
+      "We provide dedicated customer support aligned with UK time zones. Our team handles inquiries, complaints, and bookings promptly, ensuring your clients experience professional service 24/7.",
+    icon: <FaMoneyBillWave />,
+    iconBg: "#588157",
+    teamImg: Team2,
+  },
+];
 
-    // 👇 ADD THIS
+export default function ServicesSection() {
   useEffect(() => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
-  }, []);
-
-  const services = [
-    {
-      id: 1,
-      title: "Home Care",
-      icon: <FaHome size={24} />,
-      description:
-        "Personalized care visits to assist with daily tasks, medication reminders, and companionship, all in the comfort of your home.",
-      highlights: [
-        "Daily visits tailored to your needs",
-        "Professional and compassionate caregivers",
-        "Medication reminders & personal assistance",
-      ],
-      image: ss1,
-      color: "bg-[#0B4F6C]",
-    },
-    {
-      id: 2,
-      title: "Supported Living",
-      icon: <MdOutlineSupport size={24} />,
-      description:
-        "Independent living with tailored support, ensuring safety and quality of life while maintaining personal freedom.",
-      highlights: [
-        "24/7 support available",
-        "Safe and comfortable environment",
-        "Personalized care plans",
-      ],
-      image: ss2,
-      color: "bg-[#1CA89B]",
-    },
-    {
-      id: 3,
-      title: "Live-In Care",
-      icon: <FaBed size={24} />,
-      description:
-        "24/7 care and support in your own home, helping with daily activities, companionship, and round-the-clock assistance.",
-      highlights: [
-        "Continuous care at home",
-        "Personalized schedules",
-        "Experienced live-in caregivers",
-      ],
-      image: ss4,
-      color: "bg-[#0B4F6C]",
-    },
-  ];
+  window.scrollTo(0, 0);
+}, []);
+  const ref = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ["start end", "end start"],
+  });
+  const height = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
   return (
-    <div className="w-full bg-[#F5F7FA]">
-      {/* Hero Section */}
-      <section className="relative w-full bg-gradient-to-r from-[#0B4F6C] via-[#0e5f80] to-[#20B2AA] text-white py-32 px-6 md:px-12 overflow-hidden">
-        {/* Decorative Shapes */}
-        <div className="absolute -top-16 -right-16 w-72 h-72 bg-white/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-0 left-0 w-60 h-60 bg-white/5 rounded-full blur-2xl"></div>
+    <section
+      ref={ref}
+       className="w-full bg-white text-[#283618] py-32 sm:py-36 lg:py-40 px-5 sm:px-8 lg:px-12 relative overflow-hidden"
+    >
+            {/* Header */}
+      <div className="max-w-4xl mx-auto text-center mb-16">
+        <span className="text-sm text-[#588157] uppercase tracking-widest font-semibold">
+          Our Services
+        </span>
+        <motion.div
+          initial={{ width: 0 }}
+          whileInView={{ width: 80 }}
+          transition={{ duration: 0.7 }}
+          className="h-[4px] mt-3 rounded-full bg-gradient-to-r from-[#FFD60A] to-[#588157] mx-auto"
+        />
+        <h2 className="mt-6 text-4xl sm:text-5xl font-bold text-[#283618]">
+          Professional UK Taxi Outsourcing
+        </h2>
+        <p className="mt-4 text-[#344e41]/90 text-lg sm:text-xl max-w-3xl mx-auto leading-relaxed">
+          BritOps Taxi Outsourcing offers innovative UK taxi outsourcing solutions. Our team ensures seamless dispatch, fleet coordination, airport transfers, and 24/7 customer support, delivered from Pakistan with UK standards.
+        </p>
+      </div>
+      {/* Decorative shapes */}
+      <div className="absolute -top-10 -left-10 w-32 h-32 bg-[#FFD60A] rounded-full opacity-20 animate-pulse"></div>
+      <div className="absolute -bottom-10 -right-10 w-40 h-40 bg-[#588157] rounded-full opacity-20 animate-pulse"></div>
 
-        <div className="relative max-w-7xl mx-auto grid md:grid-cols-2 items-center gap-8">
-          {/* Text */}
-          <div>
-            <h1 className="text-4xl md:text-6xl font-bold leading-tight">
-              Compassionate <span className="text-[#4CAF50]">Care Services</span> for a Better Life
-            </h1>
-            <p className="mt-6 text-lg md:text-xl text-gray-200 max-w-xl">
-              We provide personalized home care, supported living, and live-in care solutions to improve comfort, safety, and quality of life.
-            </p>
-            <div className="mt-8 flex gap-4">
-              <button className="bg-[#4CAF50] hover:bg-green-600 text-white px-8 py-3 rounded-lg font-semibold shadow-lg transition-all duration-300 transform hover:-translate-y-1 hover:shadow-xl">
-                Get Consultation
-              </button>
-              <button className="border border-white text-white px-8 py-3 rounded-lg font-semibold hover:bg-white hover:text-[#0B4F6C] transition-all duration-300">
-                Learn More
-              </button>
-            </div>
-          </div>
+      <div className="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-start">
+        {/* LEFT SIDE */}
+        <motion.div
+          initial={{ opacity: 0, y: 60 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7 }}
+        >
+          <span className="text-sm text-[#588157] uppercase tracking-widest font-semibold">
+            Why BOTO
+          </span>
 
-          {/* Optional Hero Image */}
-          <div className="hidden md:block relative">
-            <img
-              src={ss3}
-              alt="Home Care"
-              className="rounded-xl shadow-2xl"
-            />
-            <div className="absolute -top-8 -left-8 w-32 h-32 bg-white/10 rounded-full blur-xl animate-pulse"></div>
-          </div>
-        </div>
-      </section>
+          <motion.div
+            initial={{ width: 0 }}
+            whileInView={{ width: 60 }}
+            transition={{ duration: 0.6 }}
+            className="h-[3px] mt-3 rounded-full bg-gradient-to-r from-[#FFD60A] to-[#588157]"
+          />
 
-      {/* Services Section */}
-      <section className="max-w-7xl mx-auto px-6 md:px-12 py-20 grid gap-12">
-        {services.map((service, index) => (
-          <div
-            key={service.id}
-            className={`flex flex-col md:flex-row ${
-              index % 2 === 1 ? "md:flex-row-reverse" : ""
-            } items-center gap-8 bg-white rounded-2xl shadow-xl overflow-hidden hover:shadow-2xl transition-shadow duration-300`}
-          >
-            {/* Image */}
-            <div
-              className="flex-1 h-64 md:h-80 bg-cover bg-center transform transition-transform duration-500 hover:scale-105"
-              style={{ backgroundImage: `url(${service.image})` }}
-            ></div>
+          <h2 className="mt-6 text-4xl lg:text-5xl font-bold leading-tight text-[#283618]">
+            Expert UK Taxi Dispatch Solutions
+          </h2>
+          <p className="mt-6 text-[#344e41] text-lg max-w-md leading-relaxed">
+            CabCall offers end-to-end UK taxi outsourcing solutions. Our team manages bookings, dispatch, fleet operations, airport transfers, and customer support, ensuring top-notch UK-standard service from Pakistan.
+          </p>
+          <p className="mt-4 text-[#344e41] text-lg max-w-md leading-relaxed">
+            Cost-effective, 24/7, and highly reliable dispatch outsourcing that scales your UK taxi business efficiently while maintaining client satisfaction.
+          </p>
+        </motion.div>
 
-            {/* Text */}
-            <div className="flex-1 p-6 md:p-12">
-              <div className={`inline-flex items-center gap-3 px-4 py-2 ${service.color} text-white rounded-full mb-4 shadow-md`}>
+        {/* RIGHT SIDE TIMELINE / CARDS */}
+        <div className="relative pl-10">
+          {/* Base Line */}
+          <div className="absolute left-4 top-0 w-[2px] h-full bg-[#588157]/20"></div>
+
+          {/* Animated Line */}
+          <motion.div
+            style={{ height }}
+            className="absolute left-4 top-0 w-[2px] bg-gradient-to-b from-[#FFD60A] to-[#588157]"
+          />
+
+          {services.map((service, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, x: 60 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.2 }}
+              className="relative flex flex-col lg:flex-row items-start gap-6 mb-16"
+            >
+              <div
+                className="w-12 h-12 flex items-center justify-center rounded-full shadow-lg border border-[#FFD60A]/40 text-white text-lg z-10"
+                style={{ backgroundColor: service.iconBg }}
+              >
                 {service.icon}
-                <span className="font-semibold">{service.title}</span>
               </div>
 
-              <p className="text-gray-700 mb-4">{service.description}</p>
+              <div className="flex-1">
+                <h3 className="text-xl font-semibold text-[#588157]">
+                  {service.title}
+                </h3>
+                <p className="text-[#344e41] mt-2">{service.description}</p>
 
-              <ul className="list-disc list-inside text-gray-600 space-y-2">
-                {service.highlights.map((point, i) => (
-                  <li key={i}>{point}</li>
-                ))}
-              </ul>
-
-              <button className="mt-6 bg-[#4CAF50] hover:bg-green-600 text-white px-6 py-3 rounded-md font-semibold shadow-lg transition transform hover:-translate-y-1 hover:shadow-xl">
-                Get Consultation
-              </button>
-            </div>
-          </div>
-        ))}
-      </section>
-    </div>
+                {/* Team Image */}
+                <div className="mt-4 w-full h-48 overflow-hidden rounded-xl shadow-lg">
+                  <img
+                    src={service.teamImg}
+                    alt={service.title}
+                    className="w-full h-full object-cover transition-transform duration-500 hover:scale-105"
+                  />
+                </div>
+              </div>
+            </motion.div>
+          ))}
+        </div>
+      </div>
+    </section>
   );
 }

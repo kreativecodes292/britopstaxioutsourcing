@@ -1,107 +1,115 @@
-import React, { useState } from "react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 import { FaBars, FaTimes } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { FiArrowUpRight } from "react-icons/fi";
+import { Link } from "react-router-dom";
+import boto from "../assets/new.png";
 
 export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const location = useLocation();
-
-  const links = [
-    { label: "Home", to: "/" },
-    { label: "Services", to: "/services" },
-    { label: "Contact", to: "#contact" },
-  ];
-
-  const handleContactClick = () => {
-    setMenuOpen(false);
-
-    // if already on home page → just scroll
-    if (location.pathname === "/") {
-      document.getElementById("contact")?.scrollIntoView({
-        behavior: "smooth",
-      });
-    }
-  };
 
   return (
-    <header className="bg-[#0A3B50] text-gray-100 shadow-md fixed w-full z-50">
-      <div className="max-w-7xl mx-auto flex items-center justify-between px-4 py-2">
+    <nav className="fixed top-0 left-0 w-full z-50 flex justify-center px-4 py-2">
+
+      <motion.div
+        layout
+        transition={{ duration: 0.4 }}
+        className="w-[100%] sm:w-[90%] max-w-6xl h-[90px] 
+        rounded-[40px] px-6 shadow-2xl text-white 
+        flex items-center justify-between
+        bg-gradient-to-r from-[#3a5a40] via-[#588157] to-[#a3b18a] 
+        border border-white/20"
+      >
+
         {/* Logo */}
-        <Link to="/" className="text-xl font-bold">
-          Home Care
+        {/* Logo */}
+        <Link to="/" className="flex items-center justify-center h-full">
+          <img
+            src={boto}
+            alt="BritOps Taxi Outsourcing"
+            className="h-[150px] object-contain"
+          />
         </Link>
 
         {/* Desktop Menu */}
-        <nav className="hidden md:flex gap-6 text-sm">
-          {links.map((link) =>
-            link.label === "Contact" ? (
-              <a
-                key={link.label}
-                href="/#contact"
-                onClick={handleContactClick}
-                className="relative hover:text-[#9FE0D1] transition after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-[#9FE0D1] hover:after:w-full"
-              >
-                Contact
-              </a>
-            ) : (
-              <Link
-                key={link.label}
-                to={link.to}
-                className="relative hover:text-[#9FE0D1] transition after:absolute after:-bottom-1 after:left-0 after:w-0 after:h-0.5 after:bg-[#9FE0D1] hover:after:w-full"
-              >
-                {link.label}
-              </Link>
-            )
-          )}
-        </nav>
+        <ul className="hidden md:flex items-center gap-8 font-medium">
+          <li>
+            <Link to="/" className="hover:text-[#FFD60A] transition">
+              Home
+            </Link>
+          </li>
+          <li>
+            <Link to="/about" className="hover:text-[#FFD60A] transition">
+              About
+            </Link>
+          </li>
+          <li>
+            <Link to="/services" className="hover:text-[#FFD60A] transition">
+              Services
+            </Link>
+          </li>
+          <li>
+            <Link to="/contact" className="hover:text-[#FFD60A] transition">
+              Contact
+            </Link>
+          </li>
+        </ul>
 
-        {/* Call Button */}
+        {/* Desktop CTA */}
         <div className="hidden md:block">
-          <a
-            href="tel:01234567890"
-            className="bg-[#20B2AA] hover:bg-[#1a9c95] transition px-4 py-2 rounded-md text-sm font-semibold text-white"
-          >
-            Call Us: 01234 567 890
-          </a>
+          <Link to="/contact">
+            <button className="bg-yellow-200 px-5 py-2 rounded-full flex items-center gap-2 font-semibold text-black hover:scale-105 transition shadow-lg">
+              Get Consultation
+              <FiArrowUpRight />
+            </button>
+          </Link>
         </div>
 
-        {/* Mobile Hamburger */}
-        <div className="md:hidden">
-          <button
-            onClick={() => setMenuOpen(!menuOpen)}
-            className="text-2xl"
-          >
-            {menuOpen ? <FaTimes /> : <FaBars />}
-          </button>
+        {/* Mobile Toggle */}
+        <div className="md:hidden text-2xl cursor-pointer">
+          {menuOpen ? (
+            <FaTimes onClick={() => setMenuOpen(false)} />
+          ) : (
+            <FaBars onClick={() => setMenuOpen(true)} />
+          )}
         </div>
-      </div>
+      </motion.div>
 
       {/* Mobile Menu */}
-      <div
-        className={`md:hidden bg-[#0A3B50] transition-all duration-300 overflow-hidden ${
-          menuOpen ? "max-h-96" : "max-h-0"
-        }`}
-      >
-        <nav className="flex flex-col gap-4 px-6 py-4">
-          <Link to="/" onClick={() => setMenuOpen(false)}>Home</Link>
-          <Link to="/services" onClick={() => setMenuOpen(false)}>Services</Link>
-
-          <a
-            href="/#contact"
-            onClick={handleContactClick}
-            className="text-lg font-medium"
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div
+            initial={{ opacity: 0, height: 0 }}
+            animate={{ opacity: 1, height: "auto" }}
+            exit={{ opacity: 0, height: 0 }}
+            transition={{ duration: 0.4 }}
+            className="absolute top-[100px] w-[90%] max-w-6xl 
+            bg-gradient-to-r from-[#3a5a40] via-[#588157] to-[#a3b18a] 
+            rounded-[30px] shadow-xl p-6 flex flex-col gap-6 text-lg font-medium md:hidden"
           >
-            Contact
-          </a>
+            <Link to="/" className="hover:text-[#FFD60A] transition">
+              Home
+            </Link>
+            <Link to="/about" className="hover:text-[#FFD60A] transition">
+              About
+            </Link>
+            <Link to="/services" className="hover:text-[#FFD60A] transition">
+              Services
+            </Link>
+            <Link to="/contact" className="hover:text-[#FFD60A] transition">
+              Contact
+            </Link>
 
-          <a
-            href="tel:01234567890"
-            className="bg-[#20B2AA] mt-4 px-4 py-2 rounded-md text-white font-semibold text-center"
-          >
-            Call Us: 01234 567 890
-          </a>
-        </nav>
-      </div>
-    </header>
+            <Link to="/contact">
+              <button className="w-full bg-yellow-200 py-2 rounded-full text-lg font-semibold flex justify-center items-center gap-2 shadow-lg hover:scale-105 transition text-black">
+                Get Consultation
+                <FiArrowUpRight />
+              </button>
+            </Link>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
+    </nav>
   );
 }

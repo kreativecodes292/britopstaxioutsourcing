@@ -35,7 +35,7 @@ export default function Hero() {
           >
             {/* Badge */}
             <div className="inline-flex items-center gap-2 bg-gradient-to-r from-[#faedcd] to-[#fefae0] text-[#344e41] px-4 py-2 rounded-full text-xs sm:text-sm font-semibold shadow-md mb-5">
-              <FaTaxi /> UK Taxi Operations Outsourcing
+              <FaTaxi /> BritOps Taxi Outsourcing
             </div>
 
             {/* Heading */}

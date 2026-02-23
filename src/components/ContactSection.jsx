@@ -29,23 +29,23 @@ export default function ContactSection() {
         >
 
           <h2 className="text-2xl sm:text-3xl font-bold text-[#fefae0] mb-2 text-center lg:text-left">
-            Book Your Outsourced Ride
+            Scale Your Taxi Business with BritOps
           </h2>
 
           <input
             type="text"
-            placeholder="Name"
+            placeholder="Company Name"
             className="w-full px-5 py-3 rounded-full border border-[#588157] bg-[#3a5a40]/20 text-[#fefae0] placeholder-[#dad7cd] focus:ring-2 focus:ring-[#588157]"
           />
 
           <input
             type="email"
-            placeholder="Email"
+            placeholder="Business EmaiL"
             className="w-full px-5 py-3 rounded-full border border-[#588157] bg-[#3a5a40]/20 text-[#fefae0] placeholder-[#dad7cd] focus:ring-2 focus:ring-[#588157]"
           />
 
           <textarea
-            placeholder="Your Message / Requirements"
+            placeholder="Current Dispatch System"
             rows={4}
             className="w-full px-5 py-3 rounded-2xl border border-[#588157] bg-[#3a5a40]/20 text-[#fefae0] placeholder-[#dad7cd] focus:ring-2 focus:ring-[#588157]"
           ></textarea>
@@ -75,7 +75,7 @@ export default function ContactSection() {
           <h1 className="mt-3 text-2xl sm:text-4xl md:text-5xl font-extrabold leading-snug text-[#eae2b0]">
             Professional UK <br />
             <span className="text-[#ddffdd]">
-              Cab Call Outsourcing Services
+              BritOps Taxi Outsourcing Services
             </span>
           </h1>
 

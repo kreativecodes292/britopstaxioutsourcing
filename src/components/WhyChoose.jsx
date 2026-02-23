@@ -26,7 +26,7 @@ export default function WhyChoose() {
           transition={{ duration: 0.7 }}
         >
           <span className="text-sm text-[#588157] uppercase tracking-widest font-semibold">
-            Why Brit Ops
+            Why BritOps
           </span>
 
           <motion.div

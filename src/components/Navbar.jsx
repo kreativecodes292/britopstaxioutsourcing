@@ -89,16 +89,16 @@ export default function Navbar() {
             bg-gradient-to-r from-[#3a5a40] via-[#588157] to-[#a3b18a] 
             rounded-[30px] shadow-xl p-6 flex flex-col gap-6 text-lg font-medium md:hidden"
           >
-            <Link to="/" className="hover:text-[#FFD60A] transition" onClick={handleLinkClick}>
+            <Link to="/" className="hover:text-[#FFD60A] text-white transition" onClick={handleLinkClick}>
               Home
             </Link>
-            <Link to="/about" className="hover:text-[#FFD60A] transition" onClick={handleLinkClick}>
+            <Link to="/about" className="hover:text-[#FFD60A] text-white transition" onClick={handleLinkClick}>
               About
             </Link>
-            <Link to="/services" className="hover:text-[#FFD60A] transition" onClick={handleLinkClick}>
+            <Link to="/services" className="hover:text-[#FFD60A] text-white transition" onClick={handleLinkClick}>
               Services
             </Link>
-            <Link to="/contact" className="hover:text-[#FFD60A] transition" onClick={handleLinkClick}>
+            <Link to="/contact" className="hover:text-[#FFD60A] text-white transition" onClick={handleLinkClick}>
               Contact
             </Link>
 
